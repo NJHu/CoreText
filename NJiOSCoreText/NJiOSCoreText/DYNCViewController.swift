@@ -52,7 +52,7 @@ extension DYNCViewController {
         let dataArray = try? JSONSerialization.jsonObject(with: Data.init(contentsOf: URL.init(fileURLWithPath: path!), options: Data.ReadingOptions.alwaysMapped), options: JSONSerialization.ReadingOptions.allowFragments)
         
         for data in (dataArray as! [[String: String]]) {
-            let p: DYNCParagraph = DYNCParagraph(text: data["content"] as! String)
+            let p: DYNCParagraph = DYNCParagraph(text: (data["content"])!)
             articles.append(p)
         }
         
