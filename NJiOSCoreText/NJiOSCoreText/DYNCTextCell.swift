@@ -8,11 +8,11 @@
 
 import UIKit
 
-let margin: Float64 = 10.0;
+let margin: CGFloat = 10.0;
 
 class DYNCTextCell: UITableViewCell {
     
-    lazy var contentAttLabel: UILabel = {
+   private lazy var contentAttLabel: UILabel = {
         var label = UILabel()
         self.contentView.addSubview(label)
         label.frame = CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: UIScreen.main.bounds.size.width - CGFloat(2 * margin), height: 1))
@@ -20,6 +20,14 @@ class DYNCTextCell: UITableViewCell {
         label.textAlignment = NSTextAlignment.left
         return label;
     }()
+    
+   public var paragraph: DYNCParagraph? {
+        didSet {
+            contentAttLabel.attributedText = paragraph?.contentText
+//            contentAttLabel.frame = CGRect(x: margin, y: margin, width: UIScreen.main.bounds.size.width - CGFloat(2 * margin), height: paragraph?.contentHeight ?? 0)
+            contentAttLabel.sizeToFit()
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,13 +51,13 @@ extension DYNCTextCell
 {
     private func setupUI()
     {
-        
+        selectionStyle = .none
     }
 }
 
 extension DYNCTextCell
 {
-    static func cell(tableView: UITableView) -> DYNCTextCell
+   public static func cell(tableView: UITableView) -> DYNCTextCell
     {
         var cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(self))
         if cell == nil {
