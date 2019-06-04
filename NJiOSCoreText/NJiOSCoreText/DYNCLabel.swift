@@ -26,8 +26,6 @@ class DYNCLabel: UIView {
         guard let textContext = UIGraphicsGetCurrentContext() else {
             return
         }
-        
-        textContext.setFillColor(UIColor.white.cgColor)
 
         textContext.textMatrix = CGAffineTransform.identity;
         
