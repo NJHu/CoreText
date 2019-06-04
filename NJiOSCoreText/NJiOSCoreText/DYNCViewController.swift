@@ -30,7 +30,7 @@ class DYNCViewController: UIViewController {
 
 extension DYNCViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return articles[indexPath.row].contentHeight
+        return articles[indexPath.row].contentHeight + 20
     }
 }
 

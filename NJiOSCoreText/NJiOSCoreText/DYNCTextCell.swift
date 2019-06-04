@@ -17,7 +17,8 @@ class DYNCTextCell: UITableViewCell {
         self.contentView.addSubview(label)
         label.frame = CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: UIScreen.main.bounds.size.width - CGFloat(2 * margin), height: 1))
         label.numberOfLines = 0
-        label.textAlignment = NSTextAlignment.left
+//        label.textAlignment = NSTextAlignment.natural
+        label.preferredMaxLayoutWidth = UIScreen.main.bounds.size.width - CGFloat(2 * margin)
         return label;
     }()
     
@@ -25,7 +26,10 @@ class DYNCTextCell: UITableViewCell {
         didSet {
             contentAttLabel.attributedText = paragraph?.contentText
 //            contentAttLabel.frame = CGRect(x: margin, y: margin, width: UIScreen.main.bounds.size.width - CGFloat(2 * margin), height: paragraph?.contentHeight ?? 0)
-            contentAttLabel.sizeToFit()
+            var frame = contentAttLabel.frame
+            frame.size.height = paragraph?.contentHeight ?? 0
+            contentAttLabel.frame = frame
+            
         }
     }
     
