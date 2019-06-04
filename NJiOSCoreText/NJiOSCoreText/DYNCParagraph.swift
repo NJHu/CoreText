@@ -9,18 +9,10 @@
 import UIKit
 import CoreText
 
-class DYNCCoreTextImage {
-    var imageName: String?
-    var range: NSRange?
-    var rect: CGRect?
-}
-
 class DYNCParagraph {
     var contentHeight: CGFloat = 0
     var contentText: NSAttributedString?
     var ctFrame: CTFrame?
-    var imageArray: [DYNCCoreTextImage] = [DYNCCoreTextImage]()
-    
     init(text: String) {
        contentText = DYNCTextTool.replaceMarriedImages(contentText: text)
 
@@ -34,14 +26,23 @@ class DYNCParagraph {
     }
     
     
-    init(coreTextText: String) {
+    convenience init(coreTextText: String) {
+        self.init(text: coreTextText)
         
+        guard let attText = contentText else { return }
         
+        let framesetter = CTFramesetterCreateWithAttributedString(attText);
+        let path = CGMutablePath()
         
+        path.addRect(CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - CGFloat(10.0 * 2), height: self.contentHeight))
+        
+        let actframe = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: attText.length), path, nil)
+        self.ctFrame = actframe
+        
+        // 释放
+        self.contentText = nil
     }
 }
-
-
 
 
 class DYNCTextTool {

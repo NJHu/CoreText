@@ -40,15 +40,5 @@ class DYNCLabel: UIView {
         textContext.scaleBy(x: 1.0, y: -1.0)
 
         CTFrameDraw(aaCTFrame, textContext)
-        
-        let image1 = UIImage(named: "dy_emoj_1")!.cgImage!
-        let image2 = UIImage(named: "em_2")!.cgImage!
-        let image3 = UIImage(named: "nl_3")!.cgImage!
-        let image4 = UIImage(named: "ul_2")!.cgImage!
-        
-        textContext.draw(image1, in: CGRect(x: 10, y: 8, width: 20, height: 14))
-        textContext.draw(image2, in: CGRect(x: 30, y: 8, width: 20, height: 14))
-        textContext.draw(image3, in: CGRect(x: 60, y: 8, width: 20, height: 14))
-        textContext.draw(image4, in: CGRect(x: 40, y: 16, width: 20, height: 14))
     }
 }
