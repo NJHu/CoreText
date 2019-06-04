@@ -14,6 +14,7 @@
 		5874B15D22A4F2B8009B4DF5 /* DYNCTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5874B15C22A4F2B8009B4DF5 /* DYNCTextCell.swift */; };
 		5874B15F22A4F973009B4DF5 /* DYNCParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5874B15E22A4F973009B4DF5 /* DYNCParagraph.swift */; };
 		5874B16322A502A0009B4DF5 /* articles.json in Resources */ = {isa = PBXBuildFile; fileRef = 5874B16222A5029F009B4DF5 /* articles.json */; };
+		58A010D822A627D400F466E2 /* DYNCLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A010D722A627D400F466E2 /* DYNCLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5874B15C22A4F2B8009B4DF5 /* DYNCTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYNCTextCell.swift; sourceTree = "<group>"; };
 		5874B15E22A4F973009B4DF5 /* DYNCParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYNCParagraph.swift; sourceTree = "<group>"; };
 		5874B16222A5029F009B4DF5 /* articles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = articles.json; path = ../../articles.json; sourceTree = "<group>"; };
+		58A010D722A627D400F466E2 /* DYNCLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DYNCLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				5874B14A22A4EF41009B4DF5 /* DYNCViewController.swift */,
 				5874B15E22A4F973009B4DF5 /* DYNCParagraph.swift */,
 				5874B15C22A4F2B8009B4DF5 /* DYNCTextCell.swift */,
+				58A010D722A627D400F466E2 /* DYNCLabel.swift */,
 				5874B15A22A4EFA4009B4DF5 /* LaunchScreen.xib */,
 				5874B14F22A4EF43009B4DF5 /* Assets.xcassets */,
 				5874B15422A4EF43009B4DF5 /* Info.plist */,
@@ -145,6 +148,7 @@
 				5874B14B22A4EF41009B4DF5 /* DYNCViewController.swift in Sources */,
 				5874B14922A4EF41009B4DF5 /* AppDelegate.swift in Sources */,
 				5874B15F22A4F973009B4DF5 /* DYNCParagraph.swift in Sources */,
+				58A010D822A627D400F466E2 /* DYNCLabel.swift in Sources */,
 				5874B15D22A4F2B8009B4DF5 /* DYNCTextCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

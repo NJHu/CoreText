@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreText
 
 class DYNCParagraph {
     var contentHeight: CGFloat = 0
     var contentText: NSAttributedString?
+    var ctFrame: CTFrame?
     init(text: String) {
        contentText = DYNCTextTool.replaceMarriedImages(contentText: text)
 
@@ -21,6 +23,24 @@ class DYNCParagraph {
         let maxSize = CGSize(width: UIScreen.main.bounds.size.width - CGFloat(10.0 * 2), height: CGFloat(MAXFLOAT))
         contentHeight = (contentText?.boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).size.height ?? 0)
         contentHeight = ceil(contentHeight)
+    }
+    
+    
+    convenience init(coreTextText: String) {
+        self.init(text: coreTextText)
+        
+        guard let attText = contentText else { return }
+        
+        let framesetter = CTFramesetterCreateWithAttributedString(attText);
+        let path = CGMutablePath()
+        
+        path.addRect(CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - CGFloat(10.0 * 2), height: self.contentHeight))
+        
+        let actframe = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: attText.length), path, nil)
+        self.ctFrame = actframe
+        
+        // 释放
+        self.contentText = nil
     }
 }
 
@@ -86,11 +106,14 @@ class DYNCTextTool {
         // 设置段落
         contentTextM.addAttributes([NSAttributedString.Key.paragraphStyle : paragraphStyle], range: NSRange(location: 0, length: contentTextM.length))
         
+        contentTextM.addAttributes([NSAttributedString.Key.backgroundColor : UIColor.white], range: NSRange(location: 0, length: contentTextM.length))
+        
         return contentTextM
     }
     
     static func imageAttStr(image: UIImage) -> NSAttributedString {
         let att = NSTextAttachment()
+        
         att.image = image
         att.bounds = CGRect(x: 0, y: -4, width: 20, height: UIFont.systemFont(ofSize: 14).lineHeight)
         return NSAttributedString(attachment: att)

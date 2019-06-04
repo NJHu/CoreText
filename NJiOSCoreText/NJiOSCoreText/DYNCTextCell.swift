@@ -17,19 +17,35 @@ class DYNCTextCell: UITableViewCell {
         self.contentView.addSubview(label)
         label.frame = CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: UIScreen.main.bounds.size.width - CGFloat(2 * margin), height: 1))
         label.numberOfLines = 0
-//        label.textAlignment = NSTextAlignment.natural
         label.preferredMaxLayoutWidth = UIScreen.main.bounds.size.width - CGFloat(2 * margin)
+        return label;
+    }()
+    
+    private lazy var ncLabel: DYNCLabel = {
+       var label = DYNCLabel()
+        self.contentView.addSubview(label)
+        label.frame = CGRect(origin: CGPoint(x: margin, y: margin), size: CGSize(width: UIScreen.main.bounds.size.width - CGFloat(2 * margin), height: 10))
         return label;
     }()
     
    public var paragraph: DYNCParagraph? {
         didSet {
-            contentAttLabel.attributedText = paragraph?.contentText
-//            contentAttLabel.frame = CGRect(x: margin, y: margin, width: UIScreen.main.bounds.size.width - CGFloat(2 * margin), height: paragraph?.contentHeight ?? 0)
+
             var frame = contentAttLabel.frame
             frame.size.height = paragraph?.contentHeight ?? 0
             contentAttLabel.frame = frame
             
+            contentAttLabel.attributedText = paragraph?.contentText
+        }
+    }
+    
+    public var coreText_paragraph: DYNCParagraph? {
+        didSet {
+            var frame = ncLabel.frame
+            frame.size.height = coreText_paragraph?.contentHeight ?? 0
+            ncLabel.frame = frame
+            
+            ncLabel.aCTFrame = coreText_paragraph?.ctFrame
         }
     }
     
