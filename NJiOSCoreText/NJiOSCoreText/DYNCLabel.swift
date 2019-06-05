@@ -10,7 +10,7 @@ import UIKit
 
 class DYNCLabel: UIView {
     
-    var aCTFrame: CTFrame? {
+    public var coreText_paragraph: DYNCParagraph? {
         didSet{
             setNeedsDisplay()
         }
@@ -18,15 +18,15 @@ class DYNCLabel: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        guard let aaCTFrame = self.aCTFrame else {
+        guard let aaCTFrame = self.coreText_paragraph?.ctFrame else {
             return
         }
-
+        
         //获取当前(View)上下文以便于之后的绘画，这个是一个离屏。
         guard let textContext = UIGraphicsGetCurrentContext() else {
             return
         }
-
+        
         textContext.textMatrix = CGAffineTransform.identity;
         
         //压栈，压入图形状态栈中.每个图形上下文维护一个图形状态栈，并不是所有的当前绘画环境的图形状态的元素都被保存。图形状态中不考虑当前路径，所以不保存
@@ -38,7 +38,62 @@ class DYNCLabel: UIView {
         
         //缩放x，y轴方向缩放，－1.0为反向1.0倍,坐标系转换,沿x轴翻转180度
         textContext.scaleBy(x: 1.0, y: -1.0)
-
+        
         CTFrameDraw(aaCTFrame, textContext)
+        
+        //        let image1 = UIImage(named: "dy_emoj_1")!.cgImage!
+        //        let image2 = UIImage(named: "em_1")!.cgImage!
+        //        let image3 = UIImage(named: "nl_1")!.cgImage!
+        //        let image4 = UIImage(named: "ul_1")!.cgImage!
+        //
+        
+        
+        guard let imagesCoreDatas = self.coreText_paragraph?.imagesCoreDatas else {
+            return
+            
+        }
+        
+        var index = 0
+        for imageData in imagesCoreDatas {
+            guard let image1 = UIImage(named: imageData.name!)?.cgImage else {
+                continue
+            }
+            switch index {
+            case 0:
+                textContext.draw(image1, in: CGRect(x: 150, y: 8, width: 20, height: 14))
+                break
+            case 1:
+                textContext.draw(image1, in: CGRect(x: 10, y: 8, width: 20, height: 14))
+                break
+            case 2:
+                textContext.draw(image1, in: CGRect(x: 35, y: 8, width: 20, height: 14))
+                break
+            case 3:
+                textContext.draw(image1, in: CGRect(x: 60, y: 8, width: 20, height: 14))
+                break
+            case 4:
+                textContext.draw(image1, in: CGRect(x: 85, y: 8, width: 20, height: 14))
+                break
+            case 5:
+                textContext.draw(image1, in: CGRect(x: 10, y: 30, width: 20, height: 14))
+                break
+            case 6:
+                textContext.draw(image1, in: CGRect(x: 35, y: 30, width: 20, height: 14))
+                break
+            case 7:
+                textContext.draw(image1, in: CGRect(x: 60, y: 30, width: 20, height: 14))
+                break
+            case 8:
+                textContext.draw(image1, in: CGRect(x: 85, y: 30, width: 20, height: 14))
+                break
+            case 9:
+                textContext.draw(image1, in: CGRect(x: 120, y: 30, width: 20, height: 14))
+                break
+            default:
+                break
+            }
+            
+            index += 1
+        }
     }
 }

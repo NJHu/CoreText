@@ -45,7 +45,7 @@ class DYNCTextCell: UITableViewCell {
             frame.size.height = coreText_paragraph?.contentHeight ?? 0
             ncLabel.frame = frame
             
-            ncLabel.aCTFrame = coreText_paragraph?.ctFrame
+            ncLabel.coreText_paragraph = coreText_paragraph
         }
     }
     
