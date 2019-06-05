@@ -50,6 +50,7 @@ class DYNCParagraph {
         path.addRect(CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - CGFloat(10.0 * 2), height: contentHeight))
         
         let actframe = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: 0), path, nil)
+        
         self.ctFrame = actframe
         
         imagesCoreDatas = data.imageDatas
@@ -118,7 +119,7 @@ class DYNCCoreTextTool{
         
         let font = UIFont.systemFont(ofSize: 14)
         
-        let contentTextM = NSMutableAttributedString(string: contentText, attributes: [kCTFontAttributeName as NSAttributedString.Key : CTFontCreateWithName(font.fontName as CFString, 14, nil), kCTForegroundColorAttributeName as NSAttributedString.Key: UIColor.black.cgColor])
+        let contentTextM = NSMutableAttributedString(string: contentText, attributes: [kCTFontAttributeName as NSAttributedString.Key : CTFontCreateWithName(font.fontName as CFString, 14, nil), kCTForegroundColorAttributeName as NSAttributedString.Key: UIColor.white.cgColor])
         
         // 匹配链接
         guard let urlRegex = try? NSRegularExpression(pattern: "((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)", options: NSRegularExpression.Options.caseInsensitive) else {
@@ -179,8 +180,6 @@ class DYNCCoreTextTool{
         
         // 设置段落
         contentTextM.addAttributes([kCTParagraphStyleAttributeName as NSAttributedString.Key : paragraphStyle], range: NSRange(location: 0, length: contentTextM.length))
-        
-        contentTextM.addAttributes([kCTForegroundColorAttributeName as NSAttributedString.Key : UIColor.white.cgColor], range: NSRange(location: 0, length: contentTextM.length))
         
         return (contentTextM as CFAttributedString, coreImageData)
     }
