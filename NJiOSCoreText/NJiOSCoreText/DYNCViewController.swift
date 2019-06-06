@@ -21,12 +21,17 @@ class DYNCViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
         view.backgroundColor = UIColor.green
         view.addSubview(tableView)
         tableView.frame = CGRect(x: 0, y: 90, width: view.bounds.width, height: view.bounds.height - 200)
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getData()
+    }
 }
+
+
 
 extension DYNCViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -57,7 +62,7 @@ extension DYNCViewController {
             let p: DYNCParagraph = DYNCParagraph(coreTextText: (data["content"])!)
             articles.append(p)
         }
-        
+        tableView.reloadData()
         print(articles)
     }
     
