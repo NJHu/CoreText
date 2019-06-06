@@ -46,8 +46,8 @@ extension DYNCViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let textCell = DYNCTextCell.cell(tableView: tableView)
-//        textCell.paragraph = articles[indexPath.row]
-        textCell.coreText_paragraph = articles[indexPath.row]
+        textCell.paragraph = articles[indexPath.row]
+//        textCell.coreText_paragraph = articles[indexPath.row]
         return textCell
     }
 }
@@ -58,8 +58,8 @@ extension DYNCViewController {
         let dataArray = try? JSONSerialization.jsonObject(with: Data.init(contentsOf: URL.init(fileURLWithPath: path!), options: Data.ReadingOptions.alwaysMapped), options: JSONSerialization.ReadingOptions.allowFragments)
         
         for data in (dataArray as! [[String: String]]) {
-//            let p: DYNCParagraph = DYNCParagraph(text: (data["content"])!)
-            let p: DYNCParagraph = DYNCParagraph(coreTextText: (data["content"])!)
+            let p: DYNCParagraph = DYNCParagraph(text: (data["content"])!)
+//            let p: DYNCParagraph = DYNCParagraph(coreTextText: (data["content"])!)
             articles.append(p)
         }
         tableView.reloadData()
