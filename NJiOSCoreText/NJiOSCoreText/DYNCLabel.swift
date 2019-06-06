@@ -41,18 +41,12 @@ class DYNCLabel: UIView {
         
         CTFrameDraw(aaCTFrame, textContext)
         
-        //        let image1 = UIImage(named: "dy_emoj_1")!.cgImage!
-        //        let image2 = UIImage(named: "em_1")!.cgImage!
-        //        let image3 = UIImage(named: "nl_1")!.cgImage!
-        //        let image4 = UIImage(named: "ul_1")!.cgImage!
-        //
-        
-        
         guard let imagesCoreDatas = self.coreText_paragraph?.imagesCoreDatas else {
             return
             
         }
         
+        /// 几个图片随意放些位置
         var index = 0
         for imageData in imagesCoreDatas {
             guard let image1 = UIImage(named: imageData.name!)?.cgImage else {

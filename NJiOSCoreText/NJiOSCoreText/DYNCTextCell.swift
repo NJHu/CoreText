@@ -12,6 +12,8 @@ let margin: CGFloat = 10.0;
 
 class DYNCTextCell: UITableViewCell {
     
+    
+   /// TextKit 展示
    private lazy var contentAttLabel: UILabel = {
         var label = UILabel()
         self.contentView.addSubview(label)
@@ -21,6 +23,8 @@ class DYNCTextCell: UITableViewCell {
         return label;
     }()
     
+    
+    /// CoreText 展示
     private lazy var ncLabel: DYNCLabel = {
        var label = DYNCLabel()
         self.contentView.addSubview(label)
@@ -28,6 +32,7 @@ class DYNCTextCell: UITableViewCell {
         return label;
     }()
     
+    // TextKit-Set方法
    public var paragraph: DYNCParagraph? {
         didSet {
 
@@ -39,6 +44,7 @@ class DYNCTextCell: UITableViewCell {
         }
     }
     
+    /// CoreText-Set方法
     public var coreText_paragraph: DYNCParagraph? {
         didSet {
             var frame = ncLabel.frame

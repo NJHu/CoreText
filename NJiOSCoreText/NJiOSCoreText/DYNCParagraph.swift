@@ -21,6 +21,10 @@ class DYNCParagraph {
     var contentText: NSAttributedString?
     var ctFrame: CTFrame?
     var imagesCoreDatas: [DYNCImageCoreData]?
+    
+    /// 创建TextKit数据
+    ///
+    /// - Parameter text: 纯文本
     init(text: String) {
        contentText = DYNCTextTool.replaceMarriedImages(contentText: text)
 
@@ -34,6 +38,9 @@ class DYNCParagraph {
     }
     
     
+    /// 创建CoreText数据
+    ///
+    /// - Parameter coreTextText: 纯文本
     init(coreTextText: String) {
         
         let data = DYNCCoreTextTool.replaceMarriedImages(contentText: coreTextText)
@@ -58,6 +65,7 @@ class DYNCParagraph {
     }
     
     
+    /// CoreText计算图片位置
     func fillImagePosition() -> Void {
         guard let imagesCoreData = self.imagesCoreDatas else {
                 return
@@ -113,6 +121,8 @@ class DYNCParagraph {
     }
 }
 
+
+/// CoreText数据处理工具类
 class DYNCCoreTextTool{
     
     static func replaceMarriedImages(contentText: String) ->  (cfAttStr: CFAttributedString?, imageDatas: [DYNCImageCoreData]?) {
@@ -190,6 +200,8 @@ class DYNCCoreTextTool{
     }
 }
 
+
+/// TextKit 数据处理工具类
 class DYNCTextTool {
     static func replaceMarriedImages(contentText: String) ->  NSAttributedString? {
         
